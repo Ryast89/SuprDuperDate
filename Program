@@ -1,0 +1,174 @@
+import javax.swing.*;
+public class SuperDuperDate2 {
+public static void main(String[] args) {
+int year = 0;
+int month = 0;
+int day = 0;
+int maxDays = 0;
+String strMonth = "";
+
+//ask user for year, then month, then day
+//save them and be ready to print later
+
+year = getYear();
+month = getMonth();
+strMonth = getName(month);
+maxDays = getMaxDays(month);
+if (maxDays == 28) {
+maxDays = isLeap(year);
+}
+day = getDay(maxDays);
+System.out.println ("You were born " + strMonth + " " + year + " " + day);
+} //main
+
+//get a year above 1800
+//get a month number
+//check the maximum day for each month. if the month is February, put 28 for now.
+//change the month number to it's actual name
+//ask for a day between 1 and the max day.
+//If the user is in february and puts 29, check if it is a leap year.
+
+public static int getMonth () {
+String error = "";
+String input = "";
+int num = 0;
+do {
+input = JOptionPane.showInputDialog(error + " Enter the month you were born");
+ if (input == null) {
+			System.exit(0);
+			}
+try {
+	num = Integer.parseInt(input);
+	} catch (Exception e) {
+		error = "Please enter an integer.";
+		continue;
+	}
+	if (num < 1 || num > 12) {
+		error = "Please enter a positive number between 1 and 12.";
+		continue;
+	}
+	break;
+}while(true);
+return num;
+}
+
+public static int getYear () {
+String error = "";
+String input = "";
+int num = 0;
+do {
+input = JOptionPane.showInputDialog(error + " Enter the year you were born");
+ if (input == null) {
+			System.exit(0);
+			}
+try {
+	num = Integer.parseInt(input);
+	} catch (Exception e) {
+		error = "Please enter an integer.";
+		continue;
+	}
+	if (num < 1800) {
+		error = "Please enter a positive number above 1800";
+		continue;
+	}
+	break;
+}while(true);
+return num;
+}
+
+
+public static int getDay (int maxDay) {
+String error = "";
+String input = "";
+int num = 0;
+do {
+input = JOptionPane.showInputDialog(error + " Enter the day you were born");
+ if (input == null) {
+			System.exit(0);
+			}
+try {
+	num = Integer.parseInt(input);
+	} catch (Exception e) {
+		error = "Please enter an integer.";
+		continue;
+	}
+	if (num < 1 || num > maxDay) {
+		error = "Please enter a positive number between 1 and " + maxDay + ".";
+		continue;
+	}
+	break;
+}while(true);
+return num;
+}
+
+public static String getName (int month) {
+switch (month) {
+	case 1: 
+	return "January";
+	case 2: 
+	return "February";
+	case 3: 
+	return "March";
+	case 4: 
+	return "April";
+	case 5: 
+	return "May";
+	case 6: 
+	return "June";
+	case 7:
+	return "July";
+	case 8:
+	return "August";
+	case 9:
+	return "September";
+	case 10: 
+	return "October";
+	case 11: 
+	return "November";
+	case 12:
+	return "December"; 
+	default:
+	return "";
+	}
+	}
+
+
+public static int getMaxDays(int month) {
+switch (month) {
+case 1:
+case 3:
+case 5:
+case 7:
+case 8:
+case 10:
+case 12: 
+return 31;
+case 2: 
+return 28;
+case 4:
+case 6:
+case 9:
+case 11: 
+return 30;
+default: 
+return 0;
+
+}
+}
+
+public static int isLeap(int year) {
+
+if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0) {
+    return 29;
+    } else {
+        return 28;
+		}
+	
+
+} //isLeap
+
+
+
+
+
+} //class
